@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AspectRatioImageView">
+        <attr name="ratio" format="float" />
+        <attr name="is_width_specified" format="boolean" />
+        <attr name="is_ratio_multiplier" format="boolean" />
+    </declare-styleable>
+
+</resources>

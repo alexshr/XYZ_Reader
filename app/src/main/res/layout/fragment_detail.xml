@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.alexshr.xyz.data.Article" />
+
+        <variable
+            name="fabListener"
+            type="Runnable" />
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="false"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="false"
+                app:contentScrim="?attr/colorPrimary"
+
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <com.alexshr.xyz.util.AspectRatioImageView
+                    android:id="@+id/collapsing_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="false"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{article.thumb}"
+                    app:layout_collapseMode="parallax"
+                    app:ratio="@dimen/image_ratio"
+
+                    tools:ignore="ContentDescription" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/widget_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:fitsSystemWindows="false"
+                    app:layout_collapseMode="pin"
+
+                    app:title=" ">
+
+                    <LinearLayout
+                        style="@style/RtlOverlay.Widget.AppCompat.ActionBar.TitleItem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/pin_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{article.title}"
+
+                            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                            tools:text="Title" />
+
+                        <TextView
+                            android:id="@+id/pin_subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/abc_action_bar_subtitle_top_margin_material"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{article.dateAndAuthor}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+                            tools:ignore="PrivateResource"
+                            tools:text="Subtitle" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/float_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:fitsSystemWindows="false"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/float_toolbar_padding_bottom"
+            android:paddingEnd="@dimen/float_toolbar_margin_h"
+            android:paddingStart="@dimen/float_toolbar_margin_h"
+            android:visibility="invisible"
+            app:layout_behavior="com.alexshr.xyz.util.HeaderBehavior"
+
+            >
+
+            <TextView
+                android:id="@+id/float_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fitsSystemWindows="false"
+                android:text="@{article.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+                android:textSize="@dimen/float_title_text_size"
+                android:visibility="invisible"
+
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/float_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/float_subtitle_margin_top"
+                android:ellipsize="end"
+                android:fitsSystemWindows="false"
+                android:text="@{article.dateAndAuthor}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+                android:textSize="@dimen/float_subtitle_text_size"
+                android:visibility="invisible"
+                tools:ignore="PrivateResource"
+                tools:text="Subtitle" />
+
+        </LinearLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fitsSystemWindows="false"
+            android:paddingBottom="@dimen/fragment_detail_nested_padding_v"
+            android:paddingTop="@dimen/fragment_detail_nested_padding_v"
+
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/fragment_detail_body_margin_h"
+                android:layout_marginStart="@dimen/fragment_detail_body_margin_h"
+                android:gravity="center_horizontal"
+
+                android:text="@{article.body}"
+                android:textSize="@dimen/body_text_size"
+                tools:text="Hello World!" />
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/share_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/floating_button_margin"
+            android:contentDescription="@string/action_share"
+            android:onClick="@{()->fabListener.run()}"
+            android:src="@drawable/ic_share_black_24dp"
+            app:fabSize="auto"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom|end" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

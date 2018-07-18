@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <integer name="span_count">2</integer>
+
+    <item name="image_ratio" format="float" type="dimen">1.5</item>
+
+    <dimen name="activity_main_logo_margin_v">8dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="article_item_margin">1dp</dimen>
+    <dimen name="article_item_padding_bottom">4dp</dimen>
+
+    <dimen name="article_item_text_margin_v">8dp</dimen>
+    <dimen name="article_item_title_margin_top">8dp</dimen>
+    <dimen name="article_item_author_margin_top">2dp</dimen>
+
+    <dimen name="activity_item_padding_bottom">8dp</dimen>
+    <dimen name="activity_main_rv_divider">4dp</dimen>
+    <dimen name="activity_main_rv_padding">4dp</dimen>
+    <dimen name="detail_metabar_padding_v">16dp</dimen>
+    <dimen name="detail_metabar_padding_h">16dp</dimen>
+
+    <dimen name="abc_action_bar_subtitle_top_margin_material" tools:override="true">-3dp</dimen>
+
+    <dimen name="float_toolbar_margin_h">20dp</dimen>
+    <dimen name="float_toolbar_padding_bottom">12dp</dimen>
+    <dimen name="float_subtitle_margin_top">2dp</dimen>
+    <dimen name="fragment_detail_body_margin_h">8dp</dimen>
+    <dimen name="floating_button_margin">16dp</dimen>
+    <dimen name="fragment_detail_body_margin_top">24dp</dimen>
+    <dimen name="fragment_detail_nested_padding_v">16dp</dimen>
+    <dimen name="body_text_size">14sp</dimen>
+    <dimen name="float_title_text_size">24sp</dimen>
+    <dimen name="float_subtitle_text_size">16sp</dimen>
+
+</resources>

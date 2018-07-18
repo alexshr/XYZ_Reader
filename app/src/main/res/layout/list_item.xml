@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="article"
+            type="com.alexshr.xyz.data.Article" />
+
+        <variable
+            name="clickCallback"
+            type="com.alexshr.xyz.util.SimpleConsumer" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/article_item_margin"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="@{()->clickCallback.accept(pos)}"
+
+        app:contentPaddingBottom="@dimen/activity_item_padding_bottom">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.alexshr.xyz.util.AspectRatioImageView
+                android:id="@+id/imageIv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:ratio="@{article.aspectRatio}"
+                app:imageUrl="@{article.thumb}"
+                tools:ignore="ContentDescription"
+                tools:layout_height="200dp" />
+
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/article_item_text_margin_v"
+                android:layout_marginStart="@dimen/article_item_text_margin_v"
+                android:layout_marginTop="@dimen/article_item_title_margin_top"
+                android:text="@{article.title}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageIv"
+                tools:text="Article title" />
+
+            <TextView
+                android:id="@+id/authorTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/article_item_text_margin_v"
+                android:layout_marginStart="@dimen/article_item_text_margin_v"
+                android:layout_marginTop="@dimen/article_item_author_margin_top"
+                android:text="@{@string/by+' '+article.author}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTv"
+                tools:text="author" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

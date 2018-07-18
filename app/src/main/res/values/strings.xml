@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">XYZ_Reader</string>
+    <string name="by">by</string>
+    <string name="action_share">Share</string>
+    <string name="no_internet">no internet</string>
+    <string name="new_data">new data was received</string>
+</resources>

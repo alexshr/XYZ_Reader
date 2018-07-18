@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="span_count">4</integer>
+
+    <dimen name="body_text_size">22sp</dimen>
+
+    <dimen name="float_title_text_size">32sp</dimen>
+    <dimen name="float_subtitle_text_size">24sp</dimen>
+</resources>
