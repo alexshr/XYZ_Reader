@@ -20,6 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--TO REVIEWER: I did not specify ActionBar elevation explicitly because
+            default action bar style "Base.Widget.AppCompat.ActionBar" includes elevation 4 dp and it can be checked easily (it would be strange if google default style didn't correspond to material design guidelines).
+
+            This question is important for me, because it concerns the general approach to the development.
+            So explain please your point more detailed if i am wrong-->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
@@ -163,6 +168,11 @@
 
         </android.support.v4.widget.NestedScrollView>
 
+        <!--TO REVIEWER: I did not specify FAB elevation explicitly because
+            FloatingActionButtom has default style "Widget_Design_FloatingActionButton" with elevation 6 dp. It's a fact.
+
+            This question is important for me, because it concerns the general approach to the development
+            So explain please your point more detailed if i am wrong-->
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/share_fab"
             android:layout_width="wrap_content"
