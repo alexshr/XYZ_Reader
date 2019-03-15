@@ -20,11 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--TO REVIEWER: I did not specify ActionBar elevation explicitly because
-            default action bar style "Base.Widget.AppCompat.ActionBar" includes elevation 4 dp and it can be checked easily (it would be strange if google default style didn't correspond to material design guidelines).
-
-            This question is important for me, because it concerns the general approach to the development.
-            So explain please your point more detailed if i am wrong-->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
@@ -54,12 +49,11 @@
                     tools:ignore="ContentDescription" />
 
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/widget_toolbar"
+                    android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:fitsSystemWindows="false"
                     app:layout_collapseMode="pin"
-
                     app:title=" ">
 
                     <LinearLayout
@@ -107,19 +101,19 @@
             android:fitsSystemWindows="false"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/float_toolbar_padding_bottom"
-            android:paddingEnd="@dimen/float_toolbar_margin_h"
             android:paddingStart="@dimen/float_toolbar_margin_h"
+            android:paddingEnd="@dimen/float_toolbar_margin_h"
+            android:paddingBottom="@dimen/float_toolbar_padding_bottom"
             android:visibility="invisible"
-            app:layout_behavior="com.alexshr.xyz.util.HeaderBehavior"
-
-            >
+            app:layout_behavior="com.alexshr.xyz.util.MyHeaderBehavior">
 
             <TextView
                 android:id="@+id/float_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:maxLines="@string/title_max_lines"
+
                 android:fitsSystemWindows="false"
                 android:text="@{article.title}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
@@ -133,6 +127,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/float_subtitle_margin_top"
+                android:maxLines="@string/subtitle_max_lines"
+
                 android:ellipsize="end"
                 android:fitsSystemWindows="false"
                 android:text="@{article.dateAndAuthor}"
@@ -150,16 +146,16 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:fitsSystemWindows="false"
-            android:paddingBottom="@dimen/fragment_detail_nested_padding_v"
             android:paddingTop="@dimen/fragment_detail_nested_padding_v"
+            android:paddingBottom="@dimen/fragment_detail_nested_padding_v"
 
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/fragment_detail_body_margin_h"
                 android:layout_marginStart="@dimen/fragment_detail_body_margin_h"
+                android:layout_marginEnd="@dimen/fragment_detail_body_margin_h"
                 android:gravity="center_horizontal"
 
                 android:text="@{article.body}"

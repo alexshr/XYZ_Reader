@@ -26,6 +26,12 @@ public class MyApp extends Application implements HasActivityInjector {
 
         Hawk.init(this).build();
 
+        initTimber();
+
+        AppInjector.init(this);
+    }
+
+    private void initTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(new DebugTree() {
                 @SuppressLint("DefaultLocale")
@@ -38,7 +44,6 @@ public class MyApp extends Application implements HasActivityInjector {
                             Thread.currentThread().getName());
                 }
             });
-            AppInjector.init(this);
         }
     }
 

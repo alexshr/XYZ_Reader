@@ -10,9 +10,6 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <!--TO REVIEWER: I did not specify ActionBar elevation explicitly because
-            default action bar style "Base.Widget.AppCompat.ActionBar" includes elevation 4 dp and it can be checked easily (it would be strange if google default style didn't correspond to material design guidelines).
-            Please explain your point more detailed if i am wrong-->
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
             android:layout_width="match_parent"

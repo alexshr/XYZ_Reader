@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alexshr.xyz.R;
-import com.alexshr.xyz.binding.ImageBindingAdapter;
 import com.alexshr.xyz.binding.ImageBindingComponent;
 import com.alexshr.xyz.databinding.FragmentDetailBinding;
 import com.alexshr.xyz.di.Injectable;
@@ -71,7 +70,6 @@ public class ArticleFragment extends Fragment implements Injectable {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         ImageBindingComponent bindingComponent = new ImageBindingComponent(this::onPaletteCreated);
-        ImageBindingAdapter bindingAdapter = bindingComponent.getImageBindingAdapter();
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false, bindingComponent);
 
@@ -85,13 +83,13 @@ public class ArticleFragment extends Fragment implements Injectable {
 
         homeAsUpDrawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
 
-        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.widgetToolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(homeAsUpDrawable);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         binding.setFabListener(this::share);
 
-        binding.widgetToolbar.setNavigationOnClickListener(view -> getActivity().onBackPressed());
+        binding.toolbar.setNavigationOnClickListener(view -> getActivity().onBackPressed());
 
         int articlePos = getArguments().getInt(ARTICLE_POS_KEY);
 

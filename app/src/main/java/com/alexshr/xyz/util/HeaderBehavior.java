@@ -6,13 +6,13 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alexshr.xyz.R;
-
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -22,31 +22,35 @@ import timber.log.Timber;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+/*
+A sample to use in subclasses
 @HeaderBehavior.ToolbarAnimationViews(
-        widgetToolbar = R.id.widget_toolbar,
+        toolbar = R.id.widget_toolbar,
         pinTitle = R.id.pin_title,
         pinSubtitle = R.id.pin_subtitle,
         floatToolbar = R.id.float_toolbar,
         floatTitle = R.id.float_title,
         floatSubtitle = R.id.float_subtitle
-)
+)*/
 
 /**
- * Title and subtitle animation
+ * Animate title ("floatTitle") and subtitle ("floatSubtitle") (each contains any lines numbers, any text size, any location)
+ * to standard title ("pinTitle") and subtitle ("pinSubtitle") of toolbar (toolbar)
+ * "floatToolbar" - is just a container which used only for "floatTitle" and "floatSubtitle" convenient location
  */
-public class HeaderBehavior extends CoordinatorLayout.Behavior<ViewGroup> {
+public abstract class HeaderBehavior extends CoordinatorLayout.Behavior<ViewGroup> {
 
     private Float ratio;
 
-    CoordinatorLayout parent;
-    AppBarLayout appBarLayout;
+    private CoordinatorLayout parent;
+    private AppBarLayout appBarLayout;
     private TextViewAnimator titleAnimator;
     private TextViewAnimator subTitleAnimator;
 
-    ToolbarAnimationViews ids;
+    private ToolbarAnimationViews ids;
 
-    ViewGroup floatToolbar;
-    Toolbar pinToolbar;
+    private ViewGroup floatToolbar;
+    private Toolbar pinToolbar;
     private int[] offset;
 
     public HeaderBehavior(Context context, AttributeSet attrs) {
@@ -100,16 +104,10 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior<ViewGroup> {
     private void init(CoordinatorLayout coordinator, View appBar) {
         parent = coordinator;
         appBarLayout = (AppBarLayout) appBar;
-        pinToolbar = parent.findViewById(ids.widgetToolbar());
-        floatToolbar = parent.findViewById(ids.floatToolbar());
-
-        pinToolbar = parent.findViewById(ids.widgetToolbar());
+        pinToolbar = parent.findViewById(ids.toolbar());
         floatToolbar = parent.findViewById(ids.floatToolbar());
 
         floatToolbar.setVisibility(INVISIBLE);
-
-        pinToolbar.setTitle("");
-        pinToolbar.setSubtitle("");
 
         measureOffset();
 
@@ -117,7 +115,7 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior<ViewGroup> {
         subTitleAnimator = new TextViewAnimator(ids.pinSubtitle(), ids.floatSubtitle());
     }
 
-    public void prepare() {
+    private void prepare() {
         moveFloatToolbarDown();
         titleAnimator.prepare();
         subTitleAnimator.prepare();
@@ -197,7 +195,7 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior<ViewGroup> {
             params.width = calc(rectPin.width(), rectExp.width());
             params.leftMargin = calc(rectPin.left, rectExp.left);
             params.topMargin = calc(rectPin.top, rectExp.top);
-            tvFloat.setTextSize(calc(textSizePin, textSizeExp));
+            tvFloat.setTextSize(TypedValue.COMPLEX_UNIT_PX, calc(textSizePin, textSizeExp));
             tvFloat.setMaxLines(calc(linesPin, linesExp));
 
             tvPin.setVisibility(ratio == 0 ? VISIBLE : INVISIBLE);
@@ -223,10 +221,11 @@ public class HeaderBehavior extends CoordinatorLayout.Behavior<ViewGroup> {
         }
     }
 
+    @Inherited
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.TYPE)
-    public static @interface ToolbarAnimationViews {
-        int widgetToolbar();
+    public @interface ToolbarAnimationViews {
+        int toolbar();
 
         int pinTitle();
 

@@ -45,7 +45,7 @@ public class ImageBindingAdapter {
                             Palette palette = Palette.from(bitmap).generate();
                             try {
                                 paletteConsumer.accept(palette);
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
                         }
                         return false;
